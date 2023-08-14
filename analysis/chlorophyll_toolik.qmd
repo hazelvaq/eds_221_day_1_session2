@@ -1,0 +1,31 @@
+---
+title: "Toolik chlorophyll concentrations"
+author: "Hazel"
+format: html
+---
+
+```{r}
+library(here)
+library(tidyverse)
+library(janitor)
+```
+
+```{r}
+#Column name not great and NA values are .
+
+# chlorophyll <- read_csv(here::here("data","toolik_chlorophyll.csv"), na = ".") %>% 
+#   clean_names()
+
+# How to rename a column use rename()
+
+chlorophyll <- read_csv(here::here("data","toolik_chlorophyll.csv"), na = ".") %>% 
+  clean_names() %>% 
+  rename(chl_a ="active_chl_a_ug_l" )
+
+```
+
+Create a histogram
+```{r}
+ggplot(data = chlorophyll, aes(x = chl_a)) + geom_histogram()
+```
+
